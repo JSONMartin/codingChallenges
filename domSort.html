@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom Test</title>
+</head>
+<body>
+    <ul id="players">
+        <li>
+            <span>John</span>
+            <strong>384</strong>
+        </li>
+        <li>
+            <span>Angela</span>
+            <strong>746</strong>
+        </li>
+        <li>
+            <span>Jack</span>
+            <strong>201</strong>
+        </li>
+        <li>
+            <span>Mary</span>
+            <strong>542</strong>
+        </li>
+    </ul>
+
+    <script>
+        var listOfPlayers = document.getElementById("players");
+        var items = listOfPlayers.children;
+
+        var players = [];
+
+        for(var key in items) {
+            var item = items[key];
+            if(item.tagName === 'LI') {
+                players.push(item);
+            }
+        }
+
+        players.sort(function(a, b) {
+            var aScore = a.children[1].innerHTML;
+            var bScore = b.children[1].innerHTML;
+            return bScore - aScore;
+        });
+
+        players.forEach(function (player) {
+            listOfPlayers.appendChild(player);
+        });
+    </script>
+
+</body>
+</html>
