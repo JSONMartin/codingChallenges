@@ -2,7 +2,7 @@
 This repo chronicles my journey to mastery through programming every day.
 
 The best habit I probably picked up during my time at HackReactor was the concept of "Toy Problems".
-In continuing with that tradition, I'm constantly sharpening the saw through coding every day, rain or shine (except my one Screen Free day on the weekends).
+In continuing with that tradition of deliberate practice, I'm constantly sharpening the saw through coding every day, rain or shine (except my one Screen Free day on the weekends).
 
 Here, I tackle a variety of coding and algorithmic challenges from various sources, including
 CodeWars, HackerRank, and a variety of other books and sources all over the internet. While I'm
