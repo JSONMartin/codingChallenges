@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4482a34-8920-46e4-a8e2-a73f316e0099" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/codewars/camelCasing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/codewars/mathIssues.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/codewars/sumPairs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f4482a34-8920-46e4-a8e2-a73f316e0099" name="Default" comment="" />
     <ignored path="testing.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -348,12 +343,12 @@
       <workItem from="1461995509498" duration="47000" />
       <workItem from="1462065180469" duration="12000" />
       <workItem from="1462072614820" duration="252000" />
-      <workItem from="1462254607484" duration="6178000" />
+      <workItem from="1462254607484" duration="6243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173774000" />
+    <option name="totallyTimeSpent" value="173839000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
