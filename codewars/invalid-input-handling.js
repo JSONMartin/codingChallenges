@@ -14,7 +14,7 @@ function getCount(words) {
       return true;
     }
     return false;
-  }
+  };
 
   return count;
 }
