@@ -1,0 +1,29 @@
+function processData(input) {
+  "use strict";
+  input = input.split("\n");
+  let numEntries = input.shift();
+  let entries = input.slice(0, numEntries);
+  let queries = input.slice(numEntries, input.length);
+
+  let dict = {};
+
+  entries.forEach((entry) => {
+    entry = entry.split(' ');
+    dict[entry[0]] = entry[1];
+  });
+
+  let res = '';
+
+  queries.forEach((query, idx) => res += ( (query in dict) ? (query + "=" + dict[query]) : "Not found") + ((idx === queries.length - 1) ? "" : "\n"));
+
+  console.log(res);
+  return res.trim();
+}
+
+sam=99912222
+Not Found
+harry=12299933
+
+sam=99912222
+Not found
+harry=12299933
