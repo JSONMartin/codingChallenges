@@ -6,4 +6,3 @@
                     dif = abs(self.__elements[x] - self.__elements[i])
                     max_dif = max(dif, max_dif)
         self.maximumDifference = int(max_dif)
-            

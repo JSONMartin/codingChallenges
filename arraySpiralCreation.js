@@ -51,3 +51,13 @@ function createSpiral(N) {
 
   return results;
 }
+
+let str = "";
+createSpiral(5).forEach((row) => {
+  row.forEach((num) => {
+      str+=num + " ";
+  });
+  str+="\n";
+});
+
+//createSpiral(5).map((row))
