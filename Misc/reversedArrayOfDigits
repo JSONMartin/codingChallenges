@@ -1,0 +1,13 @@
+def digitize(n):
+    return [int(x) for x in str(n)[::-1]]
+
+# def digitize(n):
+#     return list(map(int, str(n)[::-1]))
+
+# def digitize(n):
+#     return list(reversed(list(map(int, str(n)))))
+
+#########
+# TESTS #
+#########
+print(digitize(35231))
