@@ -1,4 +1,7 @@
-function isValidIP(str) {
+// One Liner improved fix
+const isValidIP = str => str.split('.').filter(n => n == Number(n).toString() && Number(n) <= 255).length === 4;
+
+function isValidIPOriginal(str) {
   const ipStr = str.split('.').map(i => parseInt(i));
   
   // Abort cases
