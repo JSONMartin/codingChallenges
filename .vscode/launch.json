@@ -2,14 +2,38 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python",
+            "name": "Debug Current JavaScript File",
+            "type": "node",
+            "request": "launch",
+            "program": "${file}", // File currently being viewed
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}"
+            // "protocol": "inspector"
+        },
+        {
+            "name": "Python3",
             "type": "python",
             "request": "launch",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "pythonPath": "${config.python.pythonPath}",
             "program": "${file}",
             "cwd": "${workspaceRoot}",
-            "env": null,
+            "envFile": "${workspaceRoot}/.env",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput"
+            ]
+        },
+        {
+            "name": "Python2",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "pythonPath": "/usr/bin/python",
+            "program": "${file}",
+            "cwd": "${workspaceRoot}",
             "envFile": "${workspaceRoot}/.env",
             "debugOptions": [
                 "WaitOnAbnormalExit",
