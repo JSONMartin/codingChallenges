@@ -40,6 +40,13 @@ function plusOne(a) {
   return a;
 }
 
+function test() {
+  for(let i = 0; i < 10; i++) {
+    let asdf = 3;
+    
+  }
+}
+
 let res;
 /*
 let res = plusOne([0, 1, 2, 3]); // ==> [1, 2, 4];

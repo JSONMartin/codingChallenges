@@ -14,14 +14,14 @@ class Maze {
 
   setDelay(delay) {
     this._delay = delay;
+    console.log('this._delay = delay: ', this._delay = delay);
   }
 
   setMaze(mazeStr) {
     this._mazeArr = mazeStr.split("\n").filter((row) => (row.trim() !== '')).map((row) => row.trim().split(''));
-
     this._width = this._mazeArr[0].length;
     this._height = this._mazeArr.length;
-
+    
     //Find starting point
     let findStartingPoint = () => {
       for(let r = 0; r < this._height; r++) {
@@ -70,7 +70,7 @@ class Maze {
         let winBoard = maze.slice();
 
         winBoard[r][c] = "!";
-        console.log("NUMSTEPS TO SOLUTION:", numsteps);
+        console.log("did it work?");
         console.log("SOLUTION BOARD:");
         console.log("----------------------");
         console.log(winBoard);

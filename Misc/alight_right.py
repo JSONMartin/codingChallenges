@@ -10,6 +10,14 @@ def align_right(text,width):
         else:
             result += cur_line.rstrip() + "\n"
             cur_line = ""
+    result += cur_line.rstrip() + "\n
+    
+    if len(cur_line) + len(cur_word) <= width:
+        cur_line += cur_word + " "
+        i += 1
+    else:
+        result += cur_line.rstrip() + "\n"
+        cur_line = ""   
     result += cur_line.rstrip() + "\n"
 
     lines = result.split("\n")[:-1]
