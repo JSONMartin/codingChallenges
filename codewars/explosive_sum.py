@@ -250,7 +250,7 @@ def exp_sum(n):
 # print(part(2, 2))
 
 ### TESTS
-res = exp_sum(10) # 2 -> 1+1 , 2
+res = exp_sum(6) # 2 -> 1+1 , 2
 #print(sorted(res))
 print(sorted(res))
 print("Length:", len(res))
