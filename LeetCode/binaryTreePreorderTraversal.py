@@ -48,3 +48,4 @@ class Solution(object):
 
         traverse(root)
         return visited
+        
