@@ -21,14 +21,17 @@ def moveInSquare():
 
 
 def moveInSquareRelative():
-    for i in range(10):
-        pyautogui.moveRel(100, 0, duration=0.25)
-        pyautogui.moveRel(0, 100, duration=0.25)
-        pyautogui.moveRel(-100, 0, duration=0.25)
-        pyautogui.moveRel(0, -100, duration=0.25)
+    while True:
+        print("Moving mouse again")
+
+        for i in range(10):
+            pyautogui.moveRel(100, 0, duration=0.25)
+            pyautogui.moveRel(0, 100, duration=0.25)
+            pyautogui.moveRel(-100, 0, duration=0.25)
+            pyautogui.moveRel(0, -100, duration=0.25)
 
 # print(f"Current Mouse Position:{currentMousePosition()}")
-# moveInSquareRelative()
+moveInSquareRelative()
 
 def clickLocation():
     clickLocation = (1400, 800)
@@ -76,4 +79,4 @@ def typeTest():
     pyautogui.click(1400, 300)
     pyautogui.typewrite('Hello World', DELAY)
 
-typeTest()
+# typeTest()
