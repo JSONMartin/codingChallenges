@@ -25,7 +25,7 @@ def recIntMult(x, y):
     return int(result)
 
 
-X, Y = 12345678, 87654321
+X, Y = 1234, 5678  # Result => 7006652
 # X, Y = 1234, 5678
 result = recIntMult(X, Y)
 print(result)
