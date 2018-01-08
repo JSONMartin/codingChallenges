@@ -6,85 +6,63 @@ Assumption: n is a power of 2.
 n = length of digits
 """
 
+import math
+
 
 def recIntMult(x, y):
     xDigits = str(x)
     yDigits = str(y)
-    n = len(xDigits)
 
-    if n == 1:  # base case
+    n = min(len(xDigits), len(yDigits))
+
+    if len(xDigits) <= 1 or len(yDigits) <= 1:
         return x * y
 
-    a, b = int(xDigits[:n // 2]), int(xDigits[n // 2:])
-    c, d = int(yDigits[:n // 2]), int(yDigits[n // 2:])
+    xMid = math.ceil(len(xDigits) / 2)
+    yMid = math.ceil(len(yDigits) / 2)
+
+    a, b = int(xDigits[:xMid]), int(xDigits[xMid:])
+    c, d = int(yDigits[:yMid]), int(yDigits[yMid:])
     print(f"a:{a}, b:{b}, c:{c}, d:{d}")
 
     result = 10**n * recIntMult(a, c) + 10 ** (n / 2) * (recIntMult(a, d) + recIntMult(b, c)) + recIntMult(b, d)
     return int(result)
 
 
-# X, Y = 1234, 5678  # Result => 7006652
-# # X, Y = 1234, 5678
-# result = recIntMult(X, Y)
-# print(result)
-
-
-# def KaratsubaMultiplication(x, y):
-#     xDigits, yDigits = str(x), str(y)
-#     length = min(len(xDigits), len(yDigits))
-
-#     # if length == 1:
-#     # if len(xDigits) == 1 and len(yDigits) == 1:
-#     if len(xDigits) <= 1 or len(yDigits) <= 1:
-#         return x * y
-
-#     mid = length // 2
-#     if mid == 0:
-#         mid = 1
-
-#     a, b = int(xDigits[:mid]), int(xDigits[mid:])
-#     c, d = int(yDigits[:mid]), int(yDigits[mid:])
-#     p, q = a + b, c + d
-#     print(a, b, c, d, p, q)
-#     ac = KaratsubaMultiplication(a, c)
-#     bd = KaratsubaMultiplication(b, d)
-#     # pq = p * q
-#     pq = KaratsubaMultiplication(p, q)
-
-#     adbc = pq - ac - bd
-
-#     result = (10 ** length) * ac + (10 ** (length / 2)) * adbc + bd
-#     return result
-
 def KaratsubaMultiplication(x, y):
     xDigits, yDigits = str(x), str(y)
     length = min(len(xDigits), len(yDigits))
 
-    # if length == 1:
-    # if len(xDigits) == 1 and len(yDigits) == 1:
     if len(xDigits) <= 1 or len(yDigits) <= 1:
         return x * y
 
-    mid = length // 2
-    if mid == 0:
-        mid = 1
+    # Set Mid point - if odd length, the longer digit needs to be in the first half,
+    # rather than the second half. For example, `yMid = len(yDigits) // 2` won't work!
+    xMid = math.ceil(len(xDigits) / 2)
+    yMid = math.ceil(len(yDigits) / 2)
 
-    a, b = int(xDigits[:mid]), int(xDigits[mid:])
-    c, d = int(yDigits[:mid]), int(yDigits[mid:])
-    p, q = a + b, c + d
-    print(a, b, c, d, p, q)
+    a, b = int(xDigits[:xMid]), int(xDigits[xMid:])
+    c, d = int(yDigits[:yMid]), int(yDigits[yMid:])
+    p, q = (a + b), (c + d)
     ac = KaratsubaMultiplication(a, c)
     bd = KaratsubaMultiplication(b, d)
-    # pq = p * q
-    pq = KaratsubaMultiplication(p, q)
+    pq = KaratsubaMultiplication(p, q)  # pq = p * q (use this line to debug if this doesn't work)
 
-    adbc = pq - ac - bd
+    adPlusbc = pq - ac - bd  # Stands for ad + bc ; equivlent to this code with 1 less recursive call: adbc = KaratsubaMultiplication(a, d) + KaratsubaMultiplication(b, c)
+    result = ((10 ** length) * ac) + ((10 ** (length / 2)) * adPlusbc) + bd
 
-    result = (10 ** length) * ac + (10 ** (length / 2)) * adbc + bd
+    print(f"n (length): {length}, a: {a}, b: {b}, c: {c}, d: {d}, p: {p}, q: {q}, ac: {ac}, bd: {bd}, pq: {pq}, adbc:{adPlusbc}, result: {result}")
     return result
 
 
-# X, Y = 12345678, 87654321
-X, Y = 1234, 5678  # Result => 7006652
+# Test Recursive Integer Multiplication
+X, Y = 1111, 33333  # Result => 7006652
+# X, Y = 1234, 5678  # Result => 7006652
+# # X, Y = 1234, 5678
+result = recIntMult(X, Y)
+print(result)
+
+# Test KaratsubaMultiplication
+X, Y = 1234, 5678  # Result Should be => 7006652
 result = KaratsubaMultiplication(X, Y)
 print(result)
