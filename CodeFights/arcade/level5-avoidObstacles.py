@@ -15,6 +15,6 @@ def avoidObstacles(inputArray):
     return limit
 
 
-# res = avoidObstacles([1, 4, 10, 6, 2])
+# res = avoidObstacles([1, 4, 10, 6, 2 ])
 res = avoidObstacles([5, 3, 6, 7, 9])
 print(res)
