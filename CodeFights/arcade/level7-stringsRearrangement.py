@@ -17,96 +17,59 @@ Input/Output
 from itertools import permutations
 
 
+def memoize(fn):
+    cache = {}
+
+    def wrapper(*args):
+        if args in cache:
+            return cache[args]
+        else:
+            cache[args] = fn(*args)
+            return cache[args]
+
+    return wrapper
+
+
+@memoize
+def wordDifferentByOneChar(word1, word2):
+    differences = 0
+
+    for idx in range(len(word1)):
+        if word1[idx] != word2[idx]:
+            differences += 1
+        if differences > 1:
+            return False
+
+    return differences == 1
+
+
 def stringsRearrangement(inputArray):
     allPossible = tuple(permutations(inputArray))
-    # print(allPossible)
-    memo = {}
+    for possible in allPossible:
+        foundPossibility = True
 
-    def checkPossibility(current, remaining=[]):
-        print(current, remaining)
-        if len(remaining) == 0:
-            return True
-        return checkPossibility(current + (remaining[0], ), remaining[1:])
+        for idx in range(len(possible) - 1):
+            word1, word2 = possible[idx], possible[idx + 1]
 
-    checkPossibility((), tuple(inputArray))
+            if wordDifferentByOneChar(word1, word2) is False:
+                foundPossibility = False
+                break
 
-
-def stringsRearrangementTLE(inputArray):
-    allPossible = list(permutations(inputArray))
-    maxDifference = float('-inf')
-
-    maxDifferences = []
-
-    memo = {}
-
-    # Scan through each possibility, and check if each matching pair is only a character off
-    for possibility in allPossible:
-        total = 0
-        differences = []
-        # print(possibility)
-        for idx in range(len(possibility) - 1):
-            str1, str2 = possibility[idx], possibility[idx + 1]
-            sortedStrs = sorted((str1, str2))
-            KEY = list(sortedStrs)[0] + '-' + list(sorted(sortedStrs))[1]
-            if KEY in memo:
-                differences += [memo[KEY]]
-                continue
-            # print(KEY)
-            totalDifferences = 0
-            for charIdx in range(len(possibility[idx])):
-                charA, charB = str1[charIdx], str2[charIdx]
-
-                if totalDifferences > 1:
-                    break
-                if charA != charB:
-                    totalDifferences += 1
-
-            memo[KEY] = totalDifferences if totalDifferences > 0 else float('inf')
-
-            differences += [memo[KEY]]
-            # print(differences)
-
-        maxDifferences += [max(differences)]
-
-        if min(maxDifferences) <= 1:
+        if foundPossibility:
             return True
 
-    # print(maxDifferences)
     return False
 
-# def stringsRearrangement(inputArray):
-#     allPossible = list(permutations(inputArray))
-#     maxDifference = float('-inf')
 
-#     maxDifferences = []
-
-#     # Scan through each possibility, and check if each matching pair is only a character off
-#     for possibility in allPossible:
-#         total = 0
-#         differences = []
-#         # print(possibility)
-#         for idx in range(len(possibility) - 1):
-
-#             totalDifferences = 0
-#             for charIdx in range(len(possibility[idx])):
-#                 charA, charB = possibility[idx][charIdx], possibility[idx + 1][charIdx]
-#                 # print("Comparing these chars: %s | %s" % (charA, charB))
-
-#                 if charA != charB:
-#                     totalDifferences += 1
-
-#             differences += [totalDifferences if totalDifferences > 0 else float('inf')]
-#             # print(differences)
-
-#         maxDifferences += [max(differences)]
-
-#     # print(maxDifferences)
-#     if min(maxDifferences) <= 1:
-#         return True
-#     return False
-
+""" TESTS """
 
 # res = stringsRearrangement(["abc", "abx", "axx", "abc"])
 # res = stringsRearrangement(["aba", "bbb", "bab"])
-res = stringsRearrangement(["ab", "bb", "aa"])
+res = stringsRearrangement(["abc",
+                            "bef",
+                            "bcc",
+                            "bec",
+                            "bbc",
+                            "bdc"])
+# res = stringsRearrangement(["ab", "bb", "aa"])
 print(res)
