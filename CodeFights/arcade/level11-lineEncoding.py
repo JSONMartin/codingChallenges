@@ -13,7 +13,6 @@ def lineEncoding(s):
         idx += 1
 
     encodedStr += str(letterCounter) + curLetter if letterCounter > 1 else curLetter
-    print(encodedStr)
     return encodedStr
 
 

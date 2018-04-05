@@ -22,18 +22,13 @@ from collections import Counter
 
 
 def electionsWinners(votes, undecidedVoters):
-
-    countedVotes = Counter(votes)
     maxVotes = max(votes)
 
     if undecidedVoters == 0:
+        countedVotes = Counter(votes)
         return int(countedVotes[maxVotes] == 1)
 
-    print(countedVotes)
-    # Strip out all duplicate votes
-
     winnerCount = 0
-
     for candidateVotes in votes:
         if candidateVotes + undecidedVoters > maxVotes:
             winnerCount += 1
