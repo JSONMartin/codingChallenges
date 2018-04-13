@@ -4,9 +4,15 @@ const GITHUB_ENDPOINT = "https://api.github.com";
 const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
 function printResults(user1, user2, randomRepo) {
-  console.log(`Picked first random Github user: ${user1.login} | Repo Count: ${user1.repo_count}`);
-  console.log(`Picked random repo: ${randomRepo.full_name}, which has ${randomRepo.watchers} watchers`);
-  console.log(`Picked second random person watching this repo: ${user2.login} | Repo Count:${user2.repo_count}`);
+  const results = `Picked first random Github user: ${user1.login} | Repo Count: ${user1.repo_count}
+
+    Picked random repo: ${randomRepo.full_name}, which has ${randomRepo.watchers} watchers
+
+    Picked second random person watching this repo: ${user2.login} | Repo Count:${user2.repo_count}
+`;
+
+  $(`<hr>${results.replace(/\r|\n/g, '<br />')}</hr>`).appendTo("#results");
+  console.log(results);
 }
 
 function getTwoRandomGithubUsers() {
@@ -53,4 +59,4 @@ function getTwoRandomGithubUsers() {
     .catch(error => console.warn("Encountered an error:", error));
 }
 
-getTwoRandomGithubUsers();
+// getTwoRandomGithubUsers();

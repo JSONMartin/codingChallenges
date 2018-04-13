@@ -4,18 +4,26 @@ const GITHUB_ENDPOINT = "https://api.github.com";
 const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
 function printResults(user1, user2, randomRepo) {
-  console.log(`Picked first random Github user: ${user1.login} | Repo Count: ${user1.repo_count}`);
-  console.log(`Picked random repo: ${randomRepo.full_name}, which has ${randomRepo.watchers} watchers`);
-  console.log(`Picked second random person watching this repo: ${user2.login} | Repo Count:${user2.repo_count}`);
+  const results = `Picked first random Github user: ${user1.login} | Repo Count: ${user1.repo_count}
+
+    Picked random repo: ${randomRepo.full_name}, which has ${randomRepo.watchers} watchers
+
+    Picked second random person watching this repo: ${user2.login} | Repo Count:${user2.repo_count}
+`;
+
+  $(`<hr>${results.replace(/\r|\n/g, '<br />')}</hr>`).appendTo("#results");
+  console.log(results);
 }
 
 async function getTwoRandomGithubUsers() {
   try {
     // Pick a random user
-    const users = await (await fetch(`${GITHUB_ENDPOINT}/users`)).json();
-    const user1 = users[getRandomInt(users.length)]
+    const response = await fetch(`${GITHUB_ENDPOINT}/users`);
+    const users = await response.json();
+    if (response.status !== 200) throw new Error(users.message);
 
     // Get total list of first user's repos
+    const user1 = users[getRandomInt(users.length)];
     const user1Repos = await (await fetch(user1.repos_url)).json();
 
     // Pick a random repo
@@ -35,7 +43,7 @@ async function getTwoRandomGithubUsers() {
       randomRepo
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
